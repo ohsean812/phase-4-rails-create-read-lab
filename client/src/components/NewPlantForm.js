@@ -18,8 +18,14 @@ function NewPlantForm({ onAddPlant }) {
         price: price,
       }),
     })
-      .then((r) => r.json())
-      .then((newPlant) => onAddPlant(newPlant));
+      .then((r) => {
+        if (r.ok)
+          {r.json()
+          .then((newPlant) => onAddPlant(newPlant))}
+        else
+          {console.log (r.status)}
+      })
+      
   }
 
   return (
